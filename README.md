@@ -3,6 +3,8 @@
 [![](https://img.shields.io/badge/Blog-SL_World-orange.svg)](https://blog.csdn.net/SL_World/article/details/90728386)
 > 本项目用于爬取「东莞阳光热线问政平台」中的投诉标题、申诉部门、处理状态、发布时间、详情页面中的投诉文本内容以及图片并存储到MongoDB中。
 
+【本文博客】：https://blog.csdn.net/SL_World/article/details/99096210
+
 【项目描述】：爬取「东莞阳光热线问政平台」中的投诉标题、申诉部门、处理状态、发布时间、详情页面中的投诉文本内容以及图片。
 
 【网站地址】：[东莞阳光热线问政平台](http://wz.sun0769.com/index.php/question/questionType?type=4&page=0)
