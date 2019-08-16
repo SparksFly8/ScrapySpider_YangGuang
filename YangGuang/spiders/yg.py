@@ -38,14 +38,17 @@ class YgSpider(scrapy.Spider):
         '''详情页面解析函数'''
         item = response.meta['item']  # 取出从parse传来的元数据
         img = response.xpath('//div[@class="textpic"]/img/@src').extract_first()  # 获取详情页面的图片地址(不含域名)
-        if img is None: # 若获取图片地址失败，则1.该页面仅有文本内容;2.该页面不存在-404
-            item['img'] = None
-            item['contentext'] = response.xpath('//div[@class="wzy1"]//tr[1]/td[@class="txt16_3"]/text()').extract()
-        else:   # 若成功获取图片地址，加上域名前缀，且文本内容xpath如下
-            item['img'] = 'http://wz.sun0769.com'+img
-            item['contentext'] = response.xpath('//div[@class="contentext"]/text()').extract()
-
-        yield item
+        if response.status != 200:    # 若详情页面未能正常响应
+            item['img'] = item['contentext'] = None
+            yield item
+        else:
+            if img is None: # 若获取图片地址失败，则1.该页面仅有文本内容;2.该页面不存在-404
+                item['img'] = None
+                item['contentext'] = response.xpath('//div[@class="wzy1"]//tr[1]/td[@class="txt16_3"]/text()').extract()
+            else:   # 若成功获取图片地址，加上域名前缀，且文本内容xpath如下
+                item['img'] = 'http://wz.sun0769.com'+img
+                item['contentext'] = response.xpath('//div[@class="contentext"]/text()').extract()
+            yield item
 
     def get_ua(self):
         '''随机生成User-Agent用户代理'''
