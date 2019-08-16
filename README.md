@@ -15,7 +15,9 @@
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20190816225817282.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NMX1dvcmxk,size_16,color_FFFFFF,t_70)
 
 爬虫文件位于：`YangGuang/spiders/yg.py`
+
 管道文件位于：`YangGuang/pipelines.py`
+
 项目文件位于：`YangGuang/items.py`
 
 本项目的主要模块代码，已在必要的地方做了详细注释
