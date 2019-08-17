@@ -23,6 +23,9 @@ ROBOTSTXT_OBEY = False
 
 LOG_LEVEL = 'WARN'
 
+MONGO_HOST = 'localhost'
+MONGO_PORT = 27017
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 

@@ -5,14 +5,19 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 import re
+from YangGuang.settings import MONGO_HOST, MONGO_PORT
 from pymongo import MongoClient
-client = MongoClient('127.0.0.1', 27017)  # 新建MongoDB客户端实例
-col = client['YangGuang']['content']      # 新建数据库为YangGuang，集合为content的实例
+
 
 class YangguangPipeline(object):
+    def open_spider(self, spider):
+        '''爬虫开始执行时执行的函数(仅run一次)，可放入数据库连接代码'''
+        client = MongoClient(MONGO_HOST, MONGO_PORT)  # 新建MongoDB客户端实例
+        self.col = client['YangGuang']['content']     # 新建数据库为YangGuang，集合为content的实例
+
     def process_item(self, item, spider):
         item['contentext'] = self.process_content(item['contentext']) # 清洗item中content数据
-        col.insert_many([dict(item)])     # 向MongoDB中插入数据
+        self.col.insert_many([dict(item)])     # 向MongoDB中插入数据
         # print(item['href'])
         return item
 
